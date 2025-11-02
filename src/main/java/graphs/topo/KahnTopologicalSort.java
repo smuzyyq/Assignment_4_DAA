@@ -1,46 +1,36 @@
 package graphs.topo;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
+import metrics.MetricsTracker;
 
-public final class KahnTopologicalSort {
+public class KahnTopologicalSort {
 
-    private KahnTopologicalSort() {
-    }
+    public static List<Integer> sort(List<List<Integer>> adj, MetricsTracker m) {
+        m.start();
 
-    public static List<Integer> sort(List<List<Integer>> adj) {
         int n = adj.size();
         int[] indeg = new int[n];
-
-        for (int v = 0; v < n; v++) {
-            for (int to : adj.get(v)) {
-                indeg[to]++;
-            }
+        for (int u = 0; u < n; u++) {
+            for (int v : adj.get(u)) indeg[v]++;
         }
 
         Queue<Integer> q = new ArrayDeque<>();
-        for (int v = 0; v < n; v++) {
-            if (indeg[v] == 0) {
-                q.add(v);
-            }
-        }
+        for (int i = 0; i < n; i++) if (indeg[i] == 0) q.add(i);
 
-        List<Integer> order = new ArrayList<>(n);
+        List<Integer> order = new ArrayList<>();
         while (!q.isEmpty()) {
-            int v = q.poll();
-            order.add(v);
-            for (int to : adj.get(v)) {
-                if (--indeg[to] == 0) {
-                    q.add(to);
-                }
+            int u = q.remove();
+            m.incTopo();
+            order.add(u);
+            for (int v : adj.get(u)) {
+                if (--indeg[v] == 0) q.add(v);
             }
         }
 
-        if (order.size() != n) {
-            throw new IllegalStateException("graph has cycle, topo order not possible");
-        }
+        m.stop();
+
+        if (order.size() != n)
+            throw new IllegalStateException("Graph has a cycle");
 
         return order;
     }

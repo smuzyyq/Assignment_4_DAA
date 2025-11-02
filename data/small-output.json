@@ -10,7 +10,11 @@
     "scc" : [ [ 5 ], [ 4 ], [ 3 ], [ 1 ], [ 2 ], [ 0 ] ],
     "topoOrder" : [ 0, 1, 2, 3, 4, 5 ],
     "isDAG_detected" : true,
-    "dagspFrom0" : [ 0.0, 1.0, 2.0, 2.0, 3.0, 4.0 ]
+    "dagspFrom0" : [ 0.0, 1.0, 2.0, 2.0, 3.0, 4.0 ],
+    "elapsedMs" : 0.013459,
+    "dfsOps" : 6,
+    "topoOps" : 6,
+    "relaxOps" : 5
   }, {
     "id" : "small-2",
     "nodes" : 7,
@@ -21,7 +25,11 @@
     "scc" : [ [ 6 ], [ 5 ], [ 4 ], [ 3 ], [ 2, 1, 0 ] ],
     "topoOrder" : "cycle",
     "isDAG_detected" : false,
-    "dagspFrom0" : "skipped"
+    "dagspFrom0" : "skipped",
+    "elapsedMs" : 0.007375,
+    "dfsOps" : 7,
+    "topoOps" : 0,
+    "relaxOps" : 0
   }, {
     "id" : "small-3",
     "nodes" : 9,
@@ -32,6 +40,10 @@
     "scc" : [ [ 8 ], [ 6 ], [ 7 ], [ 5 ], [ 3 ], [ 4 ], [ 1 ], [ 2 ], [ 0 ] ],
     "topoOrder" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ],
     "isDAG_detected" : true,
-    "dagspFrom0" : [ 0.0, 1.0, 1.0, 2.0, 2.0, 2.0, 3.0, 3.0, 4.0 ]
+    "dagspFrom0" : [ 0.0, 1.0, 1.0, 2.0, 2.0, 2.0, 3.0, 3.0, 4.0 ],
+    "elapsedMs" : 0.006291,
+    "dfsOps" : 9,
+    "topoOps" : 9,
+    "relaxOps" : 8
   } ]
 }

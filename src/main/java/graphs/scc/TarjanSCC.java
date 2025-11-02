@@ -1,66 +1,62 @@
 package graphs.scc;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
+import metrics.MetricsTracker;
 
-public final class TarjanSCC {
+public class TarjanSCC {
 
-    private TarjanSCC() {
+    private final List<List<Integer>> adj;
+    private final int n;
+    private final int[] ids, low;
+    private final boolean[] onStack;
+    private final Deque<Integer> stack;
+    private int id;
+    private final List<List<Integer>> components;
+
+    public TarjanSCC(List<List<Integer>> adj) {
+        this.adj = adj;
+        this.n = adj.size();
+        ids = new int[n];
+        low = new int[n];
+        onStack = new boolean[n];
+        stack = new ArrayDeque<>();
+        components = new ArrayList<>();
+        Arrays.fill(ids, -1);
     }
-    public static List<List<Integer>> run(List<List<Integer>> adj) {
-        int n = adj.size();
-        int[] index = new int[n];
-        int[] low = new int[n];
-        boolean[] onStack = new boolean[n];
-        Stack<Integer> stack = new Stack<>();
-        List<List<Integer>> comps = new ArrayList<>();
+
+    public List<List<Integer>> run(MetricsTracker m) {
+        m.start();
         for (int i = 0; i < n; i++) {
-            index[i] = -1;
+            if (ids[i] == -1) dfs(i, m);
         }
-
-        int[] time = {0};
-
-        for (int v = 0; v < n; v++) {
-            if (index[v] == -1) {
-                dfs(v, adj, index, low, onStack, stack, comps, time);
-            }
-        }
-        return comps;
+        m.stop();
+        return components;
     }
 
-    private static void dfs(
-            int v,
-            List<List<Integer>> adj,
-            int[] index,
-            int[] low,
-            boolean[] onStack,
-            Stack<Integer> stack,
-            List<List<Integer>> comps,
-            int[] time
-    ) {
-        index[v] = low[v] = time[0]++;
-        stack.push(v);
-        onStack[v] = true;
+    private void dfs(int at, MetricsTracker m) {
+        m.incDfs();
+        stack.push(at);
+        onStack[at] = true;
+        ids[at] = low[at] = id++;
 
-        for (int to : adj.get(v)) {
-            if (index[to] == -1) {
-                dfs(to, adj, index, low, onStack, stack, comps, time);
-                low[v] = Math.min(low[v], low[to]);
+        for (int to : adj.get(at)) {
+            if (ids[to] == -1) {
+                dfs(to, m);
+                low[at] = Math.min(low[at], low[to]);
             } else if (onStack[to]) {
-                low[v] = Math.min(low[v], index[to]);
+                low[at] = Math.min(low[at], ids[to]);
             }
         }
 
-        if (low[v] == index[v]) {
+        if (ids[at] == low[at]) {
             List<Integer> comp = new ArrayList<>();
-            int x;
-            do {
-                x = stack.pop();
-                onStack[x] = false;
-                comp.add(x);
-            } while (x != v);
-            comps.add(comp);
+            while (true) {
+                int node = stack.pop();
+                onStack[node] = false;
+                comp.add(node);
+                if (node == at) break;
+            }
+            components.add(comp);
         }
     }
 }

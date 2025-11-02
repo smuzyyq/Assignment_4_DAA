@@ -1,70 +1,39 @@
 package graphs.dagsp;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import metrics.MetricsTracker;
 
-public final class DagShortestPaths {
+public class DagShortestPaths {
 
-    private static final double INF = 1e18;
-
-    private DagShortestPaths() {
-    }
-
-    /** Ребро DAG. */
-    public static final class Edge {
+    public static class Edge {
         public final int to;
-        public final int w;
+        public final double weight;
 
-        public Edge(int to, int w) {
+        public Edge(int to, double weight) {
             this.to = to;
-            this.w = w;
+            this.weight = weight;
         }
     }
 
-
-    public static double[] shortest(List<List<Edge>> adj, List<Integer> topo, int src) {
+    public static double[] shortest(List<List<Edge>> adj, List<Integer> topo, int src, MetricsTracker m) {
+        m.start();
         int n = adj.size();
         double[] dist = new double[n];
-        for (int i = 0; i < n; i++) dist[i] = INF;
+        Arrays.fill(dist, 1e18);
         dist[src] = 0.0;
 
-        for (int v : topo) {
-            if (dist[v] == INF) continue;
-            for (Edge e : adj.get(v)) {
-                double nd = dist[v] + e.w;
-                if (nd < dist[e.to]) {
-                    dist[e.to] = nd;
+        for (int u : topo) {
+            for (Edge e : adj.get(u)) {
+                int v = e.to;
+                double w = e.weight;
+                if (dist[u] + w < dist[v]) {
+                    dist[v] = dist[u] + w;
+                    m.incRelax();
                 }
             }
         }
+
+        m.stop();
         return dist;
-    }
-
-
-    public static double[] longest(List<List<Edge>> adj, List<Integer> topo, int src) {
-        int n = adj.size();
-        double[] dist = new double[n];
-        for (int i = 0; i < n; i++) dist[i] = -INF;
-        dist[src] = 0.0;
-
-        for (int v : topo) {
-            if (dist[v] == -INF) continue;
-            for (Edge e : adj.get(v)) {
-                double nd = dist[v] + e.w;
-                if (nd > dist[e.to]) {
-                    dist[e.to] = nd;
-                }
-            }
-        }
-        return dist;
-    }
-
-
-    public static List<List<Edge>> emptyAdj(int n) {
-        List<List<Edge>> adj = new ArrayList<>(n);
-        for (int i = 0; i < n; i++) {
-            adj.add(new ArrayList<>());
-        }
-        return adj;
     }
 }
