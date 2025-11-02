@@ -1,0 +1,84 @@
+{
+  "graphs": [
+    {
+      "id": "medium-1",
+      "nodes": 12,
+      "edgesCount": 12,
+      "density": "sparse",
+      "isDAG": false,
+      "edges": [
+        { "from": 0, "to": 1, "w": 1 },
+        { "from": 1, "to": 2, "w": 1 },
+        { "from": 2, "to": 3, "w": 1 },
+        { "from": 3, "to": 0, "w": 1 },
+
+        { "from": 2, "to": 4, "w": 2 },
+        { "from": 4, "to": 5, "w": 2 },
+        { "from": 5, "to": 6, "w": 2 },
+
+        { "from": 6, "to": 7, "w": 1 },
+        { "from": 7, "to": 8, "w": 1 },
+        { "from": 8, "to": 9, "w": 1 },
+        { "from": 9, "to": 10, "w": 1 },
+        { "from": 10, "to": 11, "w": 1 }
+      ]
+    },
+    {
+      "id": "medium-2",
+      "nodes": 16,
+      "edgesCount": 17,
+      "density": "mixed",
+      "isDAG": false,
+      "edges": [
+        { "from": 0, "to": 1, "w": 1 },
+        { "from": 1, "to": 2, "w": 1 },
+        { "from": 2, "to": 0, "w": 1 },
+
+        { "from": 3, "to": 4, "w": 1 },
+        { "from": 4, "to": 5, "w": 1 },
+        { "from": 5, "to": 3, "w": 1 },
+
+        { "from": 2, "to": 3, "w": 2 },
+        { "from": 5, "to": 6, "w": 2 },
+        { "from": 6, "to": 7, "w": 2 },
+        { "from": 7, "to": 8, "w": 2 },
+
+        { "from": 8, "to": 9, "w": 1 },
+        { "from": 9, "to": 10, "w": 1 },
+        { "from": 10, "to": 11, "w": 1 },
+        { "from": 11, "to": 12, "w": 1 },
+        { "from": 12, "to": 13, "w": 1 },
+        { "from": 13, "to": 14, "w": 1 },
+        { "from": 14, "to": 15, "w": 1 }
+      ]
+    },
+    {
+      "id": "medium-3",
+      "nodes": 18,
+      "edgesCount": 19,
+      "density": "dense",
+      "isDAG": true,
+      "edges": [
+        { "from": 0, "to": 2, "w": 3 },
+        { "from": 0, "to": 3, "w": 2 },
+        { "from": 1, "to": 3, "w": 2 },
+        { "from": 2, "to": 4, "w": 1 },
+        { "from": 3, "to": 4, "w": 1 },
+        { "from": 3, "to": 5, "w": 2 },
+        { "from": 4, "to": 6, "w": 2 },
+        { "from": 5, "to": 6, "w": 1 },
+        { "from": 6, "to": 7, "w": 1 },
+        { "from": 6, "to": 8, "w": 2 },
+        { "from": 7, "to": 9, "w": 1 },
+        { "from": 8, "to": 10, "w": 2 },
+        { "from": 9, "to": 11, "w": 2 },
+        { "from": 10, "to": 12, "w": 3 },
+        { "from": 11, "to": 13, "w": 1 },
+        { "from": 12, "to": 14, "w": 1 },
+        { "from": 13, "to": 15, "w": 1 },
+        { "from": 14, "to": 16, "w": 1 },
+        { "from": 15, "to": 17, "w": 1 }
+      ]
+    }
+  ]
+}

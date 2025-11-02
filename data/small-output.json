@@ -1,0 +1,37 @@
+{
+  "inputFile" : "small.json",
+  "graphs" : [ {
+    "id" : "small-1",
+    "nodes" : 6,
+    "edgesCount" : 6,
+    "density" : "sparse",
+    "isDAG_input" : true,
+    "sccCount" : 6,
+    "scc" : [ [ 5 ], [ 4 ], [ 3 ], [ 1 ], [ 2 ], [ 0 ] ],
+    "topoOrder" : [ 0, 1, 2, 3, 4, 5 ],
+    "isDAG_detected" : true,
+    "dagspFrom0" : [ 0.0, 1.0, 2.0, 2.0, 3.0, 4.0 ]
+  }, {
+    "id" : "small-2",
+    "nodes" : 7,
+    "edgesCount" : 7,
+    "density" : "sparse",
+    "isDAG_input" : false,
+    "sccCount" : 5,
+    "scc" : [ [ 6 ], [ 5 ], [ 4 ], [ 3 ], [ 2, 1, 0 ] ],
+    "topoOrder" : "cycle",
+    "isDAG_detected" : false,
+    "dagspFrom0" : "skipped"
+  }, {
+    "id" : "small-3",
+    "nodes" : 9,
+    "edgesCount" : 14,
+    "density" : "dense",
+    "isDAG_input" : true,
+    "sccCount" : 9,
+    "scc" : [ [ 8 ], [ 6 ], [ 7 ], [ 5 ], [ 3 ], [ 4 ], [ 1 ], [ 2 ], [ 0 ] ],
+    "topoOrder" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ],
+    "isDAG_detected" : true,
+    "dagspFrom0" : [ 0.0, 1.0, 1.0, 2.0, 2.0, 2.0, 3.0, 3.0, 4.0 ]
+  } ]
+}

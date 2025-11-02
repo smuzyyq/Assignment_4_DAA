@@ -1,0 +1,59 @@
+{
+  "graphs": [
+    {
+      "id": "small-1",
+      "nodes": 6,
+      "edgesCount": 6,
+      "density": "sparse",
+      "isDAG": true,
+      "edges": [
+        { "from": 0, "to": 1, "w": 1 },
+        { "from": 0, "to": 2, "w": 2 },
+        { "from": 1, "to": 3, "w": 1 },
+        { "from": 2, "to": 3, "w": 1 },
+        { "from": 3, "to": 4, "w": 1 },
+        { "from": 4, "to": 5, "w": 1 }
+      ]
+    },
+    {
+      "id": "small-2",
+      "nodes": 7,
+      "edgesCount": 7,
+      "density": "sparse",
+      "isDAG": false,
+      "edges": [
+        { "from": 0, "to": 1, "w": 1 },
+        { "from": 1, "to": 2, "w": 1 },
+        { "from": 2, "to": 0, "w": 1 },
+
+        { "from": 2, "to": 3, "w": 1 },
+        { "from": 3, "to": 4, "w": 1 },
+        { "from": 4, "to": 5, "w": 1 },
+        { "from": 5, "to": 6, "w": 1 }
+      ]
+    },
+    {
+      "id": "small-3",
+      "nodes": 9,
+      "edgesCount": 14,
+      "density": "dense",
+      "isDAG": true,
+      "edges": [
+        { "from": 0, "to": 1, "w": 1 },
+        { "from": 0, "to": 2, "w": 1 },
+        { "from": 1, "to": 3, "w": 1 },
+        { "from": 1, "to": 4, "w": 1 },
+        { "from": 2, "to": 4, "w": 1 },
+        { "from": 2, "to": 5, "w": 1 },
+        { "from": 3, "to": 6, "w": 1 },
+        { "from": 4, "to": 6, "w": 1 },
+        { "from": 4, "to": 7, "w": 1 },
+        { "from": 5, "to": 7, "w": 1 },
+        { "from": 6, "to": 8, "w": 1 },
+        { "from": 7, "to": 8, "w": 1 },
+        { "from": 3, "to": 5, "w": 1 },
+        { "from": 1, "to": 5, "w": 1 }
+      ]
+    }
+  ]
+}
